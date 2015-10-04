@@ -1,6 +1,7 @@
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var path = require('path');
 
 module.exports = function(app, express) {
   // define routers
@@ -12,7 +13,7 @@ module.exports = function(app, express) {
   app.use(cors());
 
   // We point to our static assets
-  app.use(express.static(__dirname));
+  app.use(express.static(path.resolve(__dirname, '..', '..', 'build')));
 
   // define API paths
   app.use('/api/pictures', picturesRouter);

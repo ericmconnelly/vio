@@ -3,7 +3,7 @@ var http = require('http');
 var request = require('request');
 
 module.exports = {
-  getPicture: function(req, res, next){
-    console.log('Hi!');
+  getPictures: function(req, res, next){
+    console.log(req.body)
   }
 };

@@ -2,5 +2,5 @@ var picturesController = require('./picturesController.js');
 
 module.exports = function(app) {
   // app is the userrouter injected from middleware file
-  app.post('/', picturesController.getPicture);
+  app.post('/getpicture', picturesController.getPictures);
 };
