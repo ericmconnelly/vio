@@ -1,42 +1,38 @@
-/** @jsx React.DOM */
+var React =require('react');
+var Component = require('react').Component;
+var bindActionCreators = require('redux').bindActionCreators;
+var connect = require('react-redux').connect;
 
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
-var React = require('react');
-var SortButton = require('./components/sortButton.jsx');
-var Header = require('./components/header.jsx');
-var util = require('./util/util.js')
+  handleChange(nextValue) {
+    // Available thanks to contextTypes below
+    const { router } = this.context;
+    router.transitionTo(`/${nextValue}`);
+  }
 
-var App = React.createClass({
-  getInitialState: function() {
-    return {
-      photos: [],
-      photoId: null
-    };
-  },
-
-  componentWillMount: function() {
-    util.getPhotos(function(data){
-      console.log('>>>', data)
-    });
-  },
-  addPhoto: function(photo) {
-    this.setState({
-      photos: this.state.photos.concat([photo]),
-      photoId: this.state.photos.length + 1
-    });
-  },
-
-  render: function() {
-    var photos = this.state.photos
+  render() {
+    // Injected by React Router
+    const { location, children} = this.props;
+    const { pathname } = location;
+    const value = pathname.substring(1);
+    // HEADER COMPONENT will replace the div with GYFTEE!
     return (
       <div>
-        <Header />
-        <div id="container">
-          <SortButton />
-        </div>
+        {children}
       </div>
     );
   }
-});
+};
 
-module.exports = App;
+function mapStateToProps(state) {
+  return {
+    state: state
+  };
+}
+
+module.exports = connect(mapStateToProps)(App);

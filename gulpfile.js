@@ -4,6 +4,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var reactify = require('reactify');
 var gulpif = require('gulp-if');
+var babelify = require('babelify');
 var uglify = require('gulp-uglify');
 var streamify = require('gulp-streamify');
 var notify = require('gulp-notify');
@@ -16,6 +17,7 @@ var livereload = require('gulp-livereload');
 var jasminePhantomJs = require('gulp-jasmine2-phantomjs');
 var nodemon = require('gulp-nodemon');
 var webserver = require('gulp-webserver');
+var babel = require('gulp-babel');
 
 // External dependencies you do not want to rebundle while developing,
 // but include in your application deployment
@@ -29,7 +31,7 @@ var browserifyTask = function (options) {
   // Our app bundler
 	var appBundler = browserify({
 		entries: [options.src], // Only need initial file, browserify finds the rest
-   	transform: [reactify], // We want to convert JSX to normal javascript
+   	transform: [babelify,reactify], // We want to convert JSX to normal javascript
 		debug: options.development, // Gives us sourcemapping
 		cache: {}, packageCache: {}, fullPaths: options.development // Requirement of watchify
 	});
@@ -170,6 +172,7 @@ gulp.task('default', function () {
   });
 
 });
+
 
 gulp.task('webserver', function() {
   gulp.src('app')

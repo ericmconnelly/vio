@@ -1,3 +1,22 @@
+/***********************************/
+/******** SITEWIDE STYLING *********/
+/***********************************/
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
-	background-color: #EAEAEA;
+  background-color: #EAEAEA;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  font-size: 200%;
+  font-weight: 300;
+}
+
+.thumb {
+    margin-bottom: 30px;
 }
