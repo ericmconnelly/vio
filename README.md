@@ -37,6 +37,8 @@ Type these commands to get started:
 5. create `/data/db` folder at root directory if it doesn't exist already
 6. run `mongod --dbpath ./data/db` process from the root directory in terminal
 7. run gulp
+8. Open Chrome browser and go to http://localhost:4000
+9. Enjoy using the app
 
 
 ## TECH STACK
