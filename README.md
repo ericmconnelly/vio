@@ -27,12 +27,16 @@ Chrome
 ## INSTALLING DEPENDENCIES
 Type these commands to get started:
 
-1. `npm install` node dependencies
-2. `brew install mongodb` if you need to install mongoDB client
-3. create `/data/db` folder at root directory if it doesn't exist already
-4. run `mongod --dbpath ./data/db` process from the root directory in terminal
-5. run gulp
-## Tech Stack
+1. Follow this link to install Homebrew (http://brew.sh/) if you don't have one
+2. `brew install node` if you haven't installed nodejs
+3. `npm install` node dependencies
+4. `brew install mongodb` if you need to install mongoDB client
+5. create `/data/db` folder at root directory if it doesn't exist already
+6. run `mongod --dbpath ./data/db` process from the root directory in terminal
+7. run gulp
+
+
+## TECH STACK
 
 ### FRONT END
 
