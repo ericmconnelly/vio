@@ -5,17 +5,18 @@ Photo Album App built with React and Instagram API
 
 #### Login with Instagram Account using OAuth
 
-![login](http://imgur.com/iMMJMkM)
+![login](https://github.com/leeric92/vio/blob/master/images/login.png)
 
 #### Main Screen with the list of saved photo albums
-![main](http://imgur.com/7uGEAC4)
+![main](https://github.com/leeric92/vio/blob/master/images/main.png)
 
 #### Customize or Create your Album
-![customize](http://imgur.com/5MdeiTl)
+![customize](https://github.com/leeric92/vio/blob/master/images/customize.png)
 
 
 #### View Your Album when Finished
-![albumview](http://imgur.com/zVKY8Cx)
+![albumview](https://github.com/leeric92/vio/blob/master/images/albumdetail.png)
+![albumview2](https://github.com/leeric92/vio/blob/master/images/albumdetail2.png)
 
 ## Author
 Eric Le, therealericle@gmail.com
