@@ -25,6 +25,9 @@ Eric Le, therealericle@gmail.com
 Chrome
 
 ## INSTALLING DEPENDENCIES
+
+Fork and clone this repo to your local machine
+
 Type these commands to get started:
 
 1. Follow this link to install Homebrew (http://brew.sh/) if you don't have one
