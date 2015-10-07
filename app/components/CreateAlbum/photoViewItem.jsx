@@ -1,5 +1,8 @@
 import React from 'react';
+import DropDownButton from './dropDownButton.jsx';
 import { Button, Alert, DropdownButton, MenuItem } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
 
 var PhotoViewItem = React.createClass({
 
@@ -55,11 +58,7 @@ var PhotoViewItem = React.createClass({
             <img className="img-responsive" src={this.props.photo.images} />
           </a>
           <div>
-            <DropdownButton title="ADD TO MY ALBUM" id="bg-nested-dropdown" className="button add-to-album-button">
-              <MenuItem eventKey="1">Create New Album</MenuItem>
-              <MenuItem eventKey="1">Album 1</MenuItem>
-              <MenuItem eventKey="2">Album 2</MenuItem>
-            </DropdownButton>
+            <DropDownButton handleAlertShow={this.handleAlertShow} album={this.props.album} photo={this.props.photo}/>
           </div>
     </div>
     );
@@ -67,4 +66,9 @@ var PhotoViewItem = React.createClass({
 
 });
 
-export default PhotoViewItem;
+var mapStateToProps = function(state) {
+  return {
+    user: state.user
+  }
+};
+export default connect(mapStateToProps)(PhotoViewItem);

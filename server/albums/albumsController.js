@@ -34,6 +34,7 @@ module.exports = {
 
     var result = [];
     request(url, function(error, response, body) {
+      console.log('>>>>',body);
       result = processJSONBody(body);
       res.send(result)
     });

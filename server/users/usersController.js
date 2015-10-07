@@ -12,7 +12,7 @@ module.exports = {
     User.findOne({instagramId: req.body.user.user.id})
       .exec(function(err, found) {
         if (found) {
-          res.status(200).send('User already existed!');
+          res.status(200).send(found);
         } else {
           var newUser = new User({
             instagramId: userInstagramId,
@@ -29,6 +29,58 @@ module.exports = {
             }
           });
       }
+    });
+  },
+
+  createNewAlbum: function(req, res) {
+    var userID = req.body.userID;
+
+    User.findOne({instagramId: userID})
+      .exec(function(err, user) {
+        if (!user) {
+          res.status(500).send('User Not Found!');
+        } else {
+          var albumID = user.albums.length;
+
+          var newAlbum = new Album({
+            albumID: albumID,
+            pictures: []
+          });
+
+          user.albums.push(newAlbum);
+
+          user.markModified('albums');
+
+          user.save(function(err, user) {
+            if (err) {
+              res.status(500).send('Error saving user to Vio DB\n\n' + err);
+            } else {
+              res.status(200).send(user);
+            }
+          });
+      }
+    });
+  },
+
+  savePhotoToAlbum: function(req, res){
+    var albumID = req.body.albumID;
+    var photo = req.body.photo;
+    var userID = req.body.userID;
+    User.findOne({instagramId: userID})
+    .exec(function(err, user) {
+      if (!user) {
+        res.status(500).send('User Not Found!');
+      } else {
+        user.albums.forEach(function(album){
+          if(album.albumID === albumID){
+            album.pictures.push(photo);
+            user.markModified('albums');
+            user.save();
+            res.send(photo);
+          }
+        });
+      }
+
     });
   }
 };

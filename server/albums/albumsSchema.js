@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var AlbumsSchema = new mongoose.Schema({
-  albumId: {
+  albumID: {
     type: String,
     required: true
   },

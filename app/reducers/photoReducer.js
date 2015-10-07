@@ -1,4 +1,4 @@
-import {  SAVE_PHOTO, INIT_PHOTO } from '../constants/ActionTypes';
+import {  SAVE_PHOTO, INIT_PHOTO} from '../constants/ActionTypes';
 
 const initialState = {};
 

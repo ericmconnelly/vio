@@ -66,7 +66,8 @@ var CreateAlbum = React.createClass({
 
 var mapStateToProps = function(state) {
   return {
-    photo : state.photo
+    photo : state.photo,
+    user: state.user
   }
 };
 export default connect(mapStateToProps)(CreateAlbum);

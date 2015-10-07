@@ -5,6 +5,35 @@ var rootAddress = URL + PORT + "/";
 var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
 
 module.exports = {
+  savePhotoToAlbum: function(albumID, photo, userID, callback){
+    $.ajax({
+        type: "POST",
+        data : {albumID: albumID,
+                photo: photo,
+                userID: userID},
+        url: rootAddress + "api/users/savephototoalbum",
+        success: function(data){
+          callback(data);
+        },
+        error: function(){
+          console.log("ajax error");
+        }
+    });
+  },
+  createNewAlbum: function(userID, callback){
+    $.ajax({
+        type: "POST",
+        data : {userID: userID},
+        url: rootAddress + "api/users/createnewalbum",
+        success: function(data){
+          callback(data);
+        },
+        error: function(){
+          console.log("ajax error");
+        }
+    });
+  },
+
   searchPicByTag: function(userTag, callback){
 
     $.ajax({
@@ -68,7 +97,7 @@ module.exports = {
   },
 
   authenticate: function(callback){
-    OAuth.initialize('wqt3Hb_UKygc0AYVGvqIxlRIQO4');
+    OAuth.initialize('dUvu2ZW0v0xShE24daxUbB8L3TA');
     OAuth.popup('instagram', function(error, success){
       if(success){
         callback(success);
@@ -84,7 +113,7 @@ module.exports = {
         data : {user: data},
         url: rootAddress + 'api/users/saveUser',
         success: function(data){
-          callback();
+          callback(data);
         },
         error: function(){
           console.log("ajax error");

@@ -13,11 +13,12 @@ var Auth = React.createClass({
   },
 
   componentWillMount: function() {
-    util.authenticate(function(data){
-      if(data && data.access_token){
-        console.log(data)
-        util.saveUser(data, function(){
-          localStorage.setItem('access_token', JSON.stringify({'access_token' : data.access_token}));
+    util.authenticate(function(user){
+      if(user && user.access_token){
+        console.log(user)
+        util.saveUser(user, function(data){
+          console.log('>>>>>>>>>>', user)
+          localStorage.setItem('access_token', JSON.stringify({'access_token' : user.access_token}));
           this.props.dispatch(saveUser(data));
           this.transitionTo(`/photoalbum`);
         }.bind(this));

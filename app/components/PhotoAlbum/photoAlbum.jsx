@@ -4,6 +4,7 @@ import SortButton from './sortButton.jsx';
 import CreateAlbumButton from './createAlbumButton.jsx';
 import Header from './header.jsx';
 import util from './../../util/util.js';
+import { connect } from 'react-redux';
 
 var PhotoAlbum = React.createClass({
   mixins: [ Navigation ],
@@ -36,4 +37,10 @@ var PhotoAlbum = React.createClass({
   }
 });
 
-export default PhotoAlbum;
+var mapStateToProps = function(state) {
+  return {
+    photo : state.photo,
+    user: state.user
+  }
+};
+export default connect(mapStateToProps)(PhotoAlbum);
