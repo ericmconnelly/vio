@@ -1,7 +1,7 @@
 # Vio
 Photo Album App built with React and Instagram API
 
-## User Flow
+## USER FLOW
 
 #### Login with Instagram Account using OAuth
 
@@ -18,10 +18,13 @@ Photo Album App built with React and Instagram API
 ![albumview](https://github.com/leeric92/vio/blob/master/images/albumdetail.png)
 ![albumview2](https://github.com/leeric92/vio/blob/master/images/albumdetail2.png)
 
-## Author
+## AUTHOR
 Eric Le, therealericle@gmail.com
 
-## Installing Dependencies
+## BROWSER
+Chrome
+
+## INSTALLING DEPENDENCIES
 Type these commands to get started:
 
 1. `npm install` node dependencies
@@ -31,12 +34,12 @@ Type these commands to get started:
 5. run gulp
 ## Tech Stack
 
-### Front End
+### FRONT END
 
 - React
 - Redux
 
-### Back End
+### BACK END
 
 - Node/Express
 - MongoDB/Mongoose
@@ -60,8 +63,24 @@ Type these commands to get started:
 
 Vio use of external APIs Instagram and Oauth.io
 
-**Build System**
+### BUILT SYSTEMS
 
 - Gulp
+
+### DESIGN DECISION
+
+I use React to handle rendering of the UIs view and Redux to be a predictable
+state container that make it easy to modify and view the state of application
+
+Each view of the app is broken into each component that is rendered separately
+
+In the backend, I use NodeJS to run server and Express to handle APIs call between my server and Instagram API server
+
+I use browserify to perform live reload (so whenever I change my code, the browser is automatically refreshed, make it convenient). I use Babel to compile ES6 down to simple javascript. Gulp helps automate all these tasks and concatanate all of them into one javascript file to be served to client
+
+### THINGS I WISH I COULD HAVE WORKED ON
+
+I wish I have more time to write more test in chai and mocha. This will  help me discover any bugs to be fixed. I also wish I could give the app more features such as searching for a specific tag at some location
+
 
 
