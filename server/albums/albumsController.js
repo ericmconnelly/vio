@@ -1,6 +1,5 @@
 var http = require('http');
 var request = require('request');
-var Instagram = require('instagram-node-lib');
 var Promise = require('bluebird');
 var lodash = require('lodash')
 
