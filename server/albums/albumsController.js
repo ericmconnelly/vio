@@ -1,4 +1,3 @@
-// var User = require('./userModel.js');
 var http = require('http');
 var request = require('request');
 var Instagram = require('instagram-node-lib');
@@ -6,23 +5,10 @@ var Promise = require('bluebird');
 var lodash = require('lodash')
 
 module.exports = {
-  getMostRecentPicByTag: function(req, res, next){
-    var tag = req.body.tag;
-    var location = req.body.location;
-    var access_token = req.body.token;
-    console.log(tag, location, access_token)
-    var url = 'https://api.instagram.com/v1/tags/'
-            + tag
-            +'/media/recent?access_token='
-            + access_token;
 
-    var result = [];
-    request(url, function(error, response, body) {
-        result = processJSONBody(body)
-        console.log(result);
-    });
-  },
-
+  //A function that search for most recent photos
+  //of a particular tag
+  //Author: Eric Le
   searchPicByTag: function(req, res, next){
     var tag = req.body.tag,
         access_token = req.body.token;
@@ -34,12 +20,14 @@ module.exports = {
 
     var result = [];
     request(url, function(error, response, body) {
-      console.log('>>>>',body);
       result = processJSONBody(body);
       res.send(result)
     });
   },
 
+  //A function that search for most recent photos
+  //of a particular location
+  //Author: Eric Le
   searchPicByLocation: function(req, res, next){
     var location = req.body.location,
         access_token = req.body.token,
@@ -52,7 +40,6 @@ module.exports = {
               '&key='
               + process.env.GOOGLE_MAP_API_KEY
               +'&sensor=true', function(error, response, body){
-                console.log(JSON.parse(body))
                   latitude = JSON.parse(body).results[0].geometry.location.lat;
                   longitude = JSON.parse(body).results[0].geometry.location.lng;
                   getInstagramLocationID(latitude, longitude, access_token, function(data){
@@ -61,6 +48,9 @@ module.exports = {
     });
   },
 
+  //A function that search for an instagram user information
+  //using their names
+  //Author: Eric Le
   searchUser: function(req, res, next){
     var access_token = req.body.token;
     var url = 'https://api.instagram.com/v1/users/search?q='
@@ -72,6 +62,8 @@ module.exports = {
     });
   },
 
+  //A function that search for most recent photo of an instagram user using their ids
+  //Author: Eric Le
   searchMediaByUserID: function(req, res, next){
     var access_token = req.body.token;
     var userID = req.body.userID;
@@ -87,6 +79,9 @@ module.exports = {
   }
 };
 
+//A function that take in a latitude, a longitude, and an access token
+//and make a call to instagram API to get back the location ID array
+//Author: Eric Le
 var getInstagramLocationID = function(latitude, longitude, access_token, callback){
    var url = 'https://api.instagram.com/v1/locations/search?lat='
         + latitude
@@ -108,10 +103,15 @@ var getInstagramLocationID = function(latitude, longitude, access_token, callbac
     });
 };
 
+//A function that take in a an array of location ID
+//using Promise library to make a call to instagram API at once
+//wait for it to finish and return an array of result
+//Author: Eric Le
 var getInstagramPhotoWithLocationID = function(locationIDArray, access_token, callback){
-    console.log(locationIDArray);
     var promises = [];
 
+    //define the promise function
+    //Author: Eric Le
     var getPhotoASync = function(locationID) {
       return new Promise(function(resolve, reject) {
         var url = 'https://api.instagram.com/v1/locations/'
@@ -129,9 +129,16 @@ var getInstagramPhotoWithLocationID = function(locationIDArray, access_token, ca
       })
     };
 
+    //loop through the location ID array and put the location
+    //id one by one to the promises array
+    //Author: Eric Le
     locationIDArray.forEach(function(locationID){
       promises.push(getPhotoASync(locationID));
     });
+
+    //promisify to get all the result and perform some
+    //data processing to filter out undesirable/empty data
+    //Author: Eric Le
     Promise.all(promises).then(function(data) {
       var result = [];
       data =
@@ -146,17 +153,15 @@ var getInstagramPhotoWithLocationID = function(locationIDArray, access_token, ca
               return item.length > 0;
             })
 
+      //flattern out the array since it is array nested inside array
+      //Author: Eric Le
       var merged = [].concat.apply([], data);
 
       merged.forEach(function(photo){
         result.push({
-          tags : photo.tags,
-          location : photo.location,
+          tags : photo.id,
           link: photo.link,
-          images: photo.images.standard_resolution.url,
-          users_in_photo: photo.users_in_photo,
-          caption: photo.caption,
-          user: photo.user
+          images: photo.images.standard_resolution.url
         })
       })
 
@@ -164,20 +169,18 @@ var getInstagramPhotoWithLocationID = function(locationIDArray, access_token, ca
     });
 };
 
+//A function that take in a body object
+//filter for specific and necessary data
+//and return an array of each object that represent the desired data
+//Author: Eric Le
 var processJSONBody = function(body){
   var data = JSON.parse(body).data;
   var result=[];
-  console.log(data)
   data.forEach(function(photo){
     result.push({
       id: photo.id,
-      tags : photo.tags,
-      location : photo.location,
       link: photo.link,
       images: photo.images.standard_resolution.url,
-      users_in_photo: photo.users_in_photo,
-      caption: photo.caption,
-      user: photo.user
     })
   });
   return result;

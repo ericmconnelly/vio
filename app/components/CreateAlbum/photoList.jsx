@@ -3,12 +3,13 @@ import { Navigation } from 'react-router';
 import util from './../../util/util.js';
 import PhotoViewItem from './photoViewItem.jsx'
 
+
+//Render the list of photos from the component's state
+//These photos come from any of the queries that user use(tag, location, name)
+//Author: Eric Le
+
 var PhotoList = React.createClass({
   mixins: [ Navigation ],
-
-
-  componentWillMount: function() {
-  },
 
   render: function() {
     var photoItems = [];

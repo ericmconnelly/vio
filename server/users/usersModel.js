@@ -1,3 +1,6 @@
+//A Database Model for User
+//Author: Eric Le
+
 var mongoose = require('mongoose');
 var albumsSchema = require('./../albums/albumsSchema')
 

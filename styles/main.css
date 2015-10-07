@@ -20,3 +20,7 @@ body {
 .thumb {
     margin-bottom: 30px;
 }
+
+.albumId{
+  font-size: 200%;
+}

@@ -4,6 +4,10 @@ var AlbumsSchema = require('../albums/albumsSchema');
 var Album = mongoose.model('Picture', AlbumsSchema);
 
 module.exports = {
+
+  //A function that save a user information to database
+  //when they successfully log in
+  //Author: Eric Le
   saveUser: function(req, res) {
     var userInstagramId = req.body.user.user.id;
     var userName = req.body.user.user.full_name;
@@ -32,6 +36,8 @@ module.exports = {
     });
   },
 
+  //A function that initialize an empty album within a user schema
+  //Author: Eric Le
   createNewAlbum: function(req, res) {
     var userID = req.body.userID;
 
@@ -62,6 +68,9 @@ module.exports = {
     });
   },
 
+  //A function that save a user information to database
+  //when they successfully log in
+  //Author: Eric Le
   savePhotoToAlbum: function(req, res){
     var albumID = req.body.albumID;
     var photo = req.body.photo;

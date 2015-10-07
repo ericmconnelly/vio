@@ -1,3 +1,9 @@
+//The reducers of photos that take in an old state and return
+//a new state
+
+//SAVE PHOTO: update the photo state to have a new collectiob of photo
+//INIT PHOTO: create an empty collection of photo
+//Author: Eric Le
 import {  SAVE_PHOTO, INIT_PHOTO} from '../constants/ActionTypes';
 
 const initialState = {};

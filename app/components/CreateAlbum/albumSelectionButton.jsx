@@ -3,6 +3,11 @@ import { MenuItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import util from './../../util/util.js';
 
+//Handle the list of previously created album
+//Allow user to save the selected photo to the album
+//that they clicked on
+//Author: Eric Le
+
 var AlbumSelectionButton = React.createClass({
 
   savePhotoToAlbum: function(albumID, photo, userID){

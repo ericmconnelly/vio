@@ -5,6 +5,9 @@ import { savePhoto, initPhoto } from '../../actions/photo';
 import util from './../../util/util.js';
 import { Button} from 'react-bootstrap';
 
+//Render input form to allow searching for recent photo with a tag
+//Author: Eric Le
+
 var TagSearch = React.createClass({
   getInitialState: function() {
     return {value: 'Please enter tag'};

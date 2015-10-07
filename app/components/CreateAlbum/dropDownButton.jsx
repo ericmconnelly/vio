@@ -4,12 +4,16 @@ import CreateNewAlbumButton from './createNewAlbumButton.jsx';
 import AlbumSelectionButton from './albumSelectionButton.jsx';
 import { connect } from 'react-redux';
 
+
+//Render drop down menu that show option to create a new album
+//or save the photo to already existing album
+//Author: Eric Le
+
 var DropDownButton = React.createClass({
 
 
   render: function() {
     var selectionButton = [];
-    console.log(this.props.user.info)
 
     return (
       <DropdownButton title="ADD TO MY ALBUM" id="bg-nested-dropdown" className="button add-to-album-button">

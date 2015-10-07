@@ -5,6 +5,9 @@ var rootAddress = URL + PORT + "/";
 var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
 
 module.exports = {
+
+  //Input: an albumID, a photo object, a userId and a callback
+  //Output: New user object with photo being added to a correct album
   savePhotoToAlbum: function(albumID, photo, userID, callback){
     $.ajax({
         type: "POST",
@@ -20,7 +23,11 @@ module.exports = {
         }
     });
   },
+
+  //Input: an userId and a callback
+  //Output: New user object with new album being created inside a user object
   createNewAlbum: function(userID, callback){
+    console.log('USERID', userID)
     $.ajax({
         type: "POST",
         data : {userID: userID},
@@ -34,8 +41,9 @@ module.exports = {
     });
   },
 
+  //Input: a tag
+  //Output: an object containing the most recent photos being attached to that tag from Instagram API
   searchPicByTag: function(userTag, callback){
-
     $.ajax({
         type: "POST",
         data : {token: access_token,
@@ -50,6 +58,8 @@ module.exports = {
     });
   },
 
+  //Input: a location
+  //Output: an object containing the most recent photos at that location from Instagram API
   searchPicByLocation: function(userLocation, callback){
     $.ajax({
         type: "POST",
@@ -65,6 +75,8 @@ module.exports = {
     });
   },
 
+  //Input: a name of a user
+  //Output: an object containing the most recent photos of that user from Instagram API
   searchUser: function(username, callback){
     var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
     $.ajax({
@@ -80,6 +92,9 @@ module.exports = {
         }
     });
   },
+
+  //Input: an ID of an user
+  //Output: a processed object from Instagram API that contain the photos from that user ID
   searchMediaByUserId: function(userID, callback){
     var access_token = JSON.parse(localStorage.getItem("access_token")).access_token;
     $.ajax({
@@ -96,17 +111,19 @@ module.exports = {
     });
   },
 
+  //Input: a callback
+  //Output: either a success or failure from OAuth being invoked by the callback input
   authenticate: function(callback){
-    OAuth.initialize('dUvu2ZW0v0xShE24daxUbB8L3TA');
-    OAuth.popup('instagram', function(error, success){
-      if(success){
-        callback(success);
-      }else if(error){
-        callback(error);
-      }
+    OAuth.initialize(config.OAuthPublicKey);
+    OAuth.popup('instagram', {cache: true}).done(function(success, error){
+      callback(success)
+    }).fail(function(error){
+      callback(error)
     });
   },
 
+  //Input: a user data
+  //Output: the same data from  DB after saving the user
   saveUser: function(data, callback){
     $.ajax({
         type: "POST",

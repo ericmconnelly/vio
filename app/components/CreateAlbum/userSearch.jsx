@@ -6,6 +6,9 @@ import util from './../../util/util.js';
 import PhotoList from './photoList.jsx';
 import { Button} from 'react-bootstrap';
 
+//Render input form to allow searching for recent photo of a user
+//Author: Eric Le
+
 var UserSearch = React.createClass({
   getInitialState: function() {
     return {value: 'Please enter a user name'};

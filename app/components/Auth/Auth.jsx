@@ -4,6 +4,11 @@ import React from 'react';
 import util from './../../util/util.js';
 import { saveUser } from '../../actions/user';
 
+
+//Handle Authentication Popup when the user go to the root address
+//will cache the user data to local storage to prevent future popup
+//Author: Eric Le
+
 var Auth = React.createClass({
 
   mixins: [ Navigation ],
@@ -15,9 +20,7 @@ var Auth = React.createClass({
   componentWillMount: function() {
     util.authenticate(function(user){
       if(user && user.access_token){
-        console.log(user)
         util.saveUser(user, function(data){
-          console.log('>>>>>>>>>>', user)
           localStorage.setItem('access_token', JSON.stringify({'access_token' : user.access_token}));
           this.props.dispatch(saveUser(data));
           this.transitionTo(`/photoalbum`);
@@ -37,6 +40,10 @@ var Auth = React.createClass({
   }
 });
 
+
+//connect the component state to the app state, giving it access to
+//user information
+//Author: Eric Le
 var mapStateToProps = function(state) {
   return {
     user : state.user

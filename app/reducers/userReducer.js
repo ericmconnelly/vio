@@ -1,3 +1,10 @@
+//The reducers of user that take in an old state and return
+//a new state for the user
+
+//SAVE USER: update the user state to have a new information about a user
+//this include new photos being added to album or new albumn being created
+//Author: Eric Le
+
 import {  SAVE_USER } from '../constants/ActionTypes';
 
 const initialState = {};

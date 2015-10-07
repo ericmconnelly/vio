@@ -3,6 +3,11 @@ var Component = require('react').Component;
 var bindActionCreators = require('redux').bindActionCreators;
 var connect = require('react-redux').connect;
 
+
+//The main root of the app that keep track of all the state changes
+//This also has redux logger built in
+//Author: Eric Le
+
 class App extends Component {
   constructor(props) {
     super(props);
