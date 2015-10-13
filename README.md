@@ -87,9 +87,5 @@ In the backend, I use NodeJS to run server and Express to handle APIs call betwe
 
 I use browserify to perform live reload (so whenever I change my code, the browser is automatically refreshed, make it convenient). I use Babel to compile ES6 down to simple javascript. Gulp helps automate all these tasks and concatanate all of them into one javascript file to be served to client
 
-### THINGS I WISH I COULD HAVE WORKED ON
-
-I wish I have more time to write more test in chai and mocha. This will  help me discover any bugs to be fixed. I also wish I could give the app more features such as searching for a specific tag at some location
-
 
 
